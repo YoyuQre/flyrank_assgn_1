@@ -1,0 +1,85 @@
+{
+  "archetypes": {
+    "A_HIGH_VALUE_DECLINE": 685,
+    "B_CTR_OPPORTUNITY": 2063,
+    "C_AGING_CONTENT": 415,
+    "D_DEEP_POSITION_RISK": 590,
+    "E_MODEL_ONLY_WARNING": 935,
+    "F_MONITOR": 639,
+    "G_LOW_PRIORITY": 836
+  },
+  "false_alarm_share_of_flags": 0.2,
+  "metrics": {
+    "accuracy": 0.8142,
+    "auc": 0.9054,
+    "f1": 0.8221,
+    "precision": 0.8049,
+    "recall": 0.8399
+  },
+  "model": "RandomForestClassifier(n_estimators=200, random_state=42)",
+  "monitoring_reference": {
+    "overall_precision": 0.8049,
+    "precision_at_50": 1.0,
+    "predicted_decline_share": 0.5395,
+    "scored_clients": 7,
+    "scored_rows": 6163,
+    "share_aging_90d": 0.1976,
+    "share_no_position_data": 0.0101,
+    "snapshot_rows": 30000,
+    "test_base_rate": 0.511
+  },
+  "note": "priority_score is a prioritization heuristic (0.6*risk + 0.3*value + 0.1*staleness), not revenue; tier thresholds are proposed decision-policy choices.",
+  "notebook": "w07_action_playbook",
+  "observed_decay_by_freshness_tier": {
+    "0-30": {
+      "decline_rate": 0.5114,
+      "n": 20480
+    },
+    "181+": {
+      "decline_rate": 0.4713,
+      "n": 174
+    },
+    "31-90": {
+      "decline_rate": 0.5886,
+      "n": 175
+    },
+    "91-180": {
+      "decline_rate": 0.6111,
+      "n": 9171
+    }
+  },
+  "playbook": "content_action_playbook",
+  "precision_at_k": {
+    "precision_at_10": 1.0,
+    "precision_at_100": 0.99,
+    "precision_at_200": 0.995,
+    "precision_at_25": 1.0,
+    "precision_at_50": 1.0
+  },
+  "primary_reason_codes": {
+    "RC01_HIGH_VALUE_DECLINE": 685,
+    "RC02_CTR_OPPORTUNITY": 2063,
+    "RC03_AGING_CONTENT": 415,
+    "RC04_DEEP_POSITION_RISK": 590,
+    "RC05_MODEL_ONLY_WARNING": 935,
+    "RC06_MONITOR": 639,
+    "RC07_LOW_PRIORITY": 836
+  },
+  "priority_tiers": {
+    "P1_HIGH": 372,
+    "P2_MEDIUM": 1786,
+    "P3_MONITOR": 2426,
+    "P4_LOW": 1579
+  },
+  "scored_fold": {
+    "clients": 7,
+    "rows": 6163
+  },
+  "split": "grouped-by-client, GroupShuffleSplit(test_size=0.2, random_state=42)",
+  "target": "is_declining = (trend_direction == 'down')",
+  "test_base_rate": 0.511,
+  "train_fold": {
+    "clients": 25,
+    "rows": 23837
+  }
+}
