@@ -115,7 +115,7 @@
     <h2>Abstract</h2>
     <p>
       Content pages drift out of search visibility over time, and by the time a drop is visible the traffic is already lost — this paper asks whether the pages most likely to be declining can be ranked ahead of time from their own recent performance history.
-      The analysis uses an anonymized snapshot of <strong>30,000 real content pages</strong> (32 pseudonymized clients, trailing-90-day search and engagement metrics) drawn from the FlyRank internship warehouse release.
+      The analysis uses an anonymized snapshot of <strong>30,000 real content pages</strong> (32 pseudonymized clients, trailing-90-day search and engagement metrics) drawn from the FlyRank internship warehouse release — the content-refresh lane of FlyRank&rsquo;s search-optimization pipeline.
       A random-forest classifier was trained on historical search-performance, engagement, and content features and validated with a <strong>grouped-by-client holdout</strong>, so no client&rsquo;s pages appear in both training and test folds.
       On 6,163 held-out pages from 7 unseen clients the model measured accuracy 0.81 and F1 0.82 versus 0.53 and 0.63 for a transparent rule baseline (test base rate 0.51), with precision@50 of 1.00.
       The output is a ranked, reason-coded review queue that helps SEO teams decide which pages to look at first — decision support for human editors, not automation.
@@ -151,6 +151,11 @@
       An SEO editor starts the week with a library of hundreds of pages and a limited afternoon of review time.
       Some of those pages are already sliding down the search results — fewer impressions this month than last — but nothing in the dashboard shouts &ldquo;this one, next.&rdquo;
       Refreshing the right page early is cheap; refreshing the wrong page, or missing the slide entirely, is how traffic quietly leaks away.
+    </p>
+    <p>
+      This is the case study the capstone is built around: <strong>FlyRank publishes content into client sites at scale, watches how that content performs in search, and continuously optimizes it</strong> — thousands of pages per client.
+      The failure mode this lane targets is the quiet decay: pages rank, then drift down the results, and most teams notice only after the traffic is gone.
+      FlyRank&rsquo;s product already flags pages today with hand-written thresholds; this paper asks whether a learned ranking of the same signals can say which page to review <em>first</em>, at the scale where a fixed rule stops being economical.
     </p>
     <p>
       The decision this work supports is <strong>which pages to look at first</strong>. The unit of analysis is one content page.
